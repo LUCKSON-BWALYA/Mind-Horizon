@@ -26,6 +26,13 @@
     gap: 0.25rem;
 }
 
+.logo-icon {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .logo h1 {
     font-size: 2rem;
     font-weight: 700;

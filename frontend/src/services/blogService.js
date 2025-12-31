@@ -1,4 +1,5 @@
 const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
+import authService from './authService';
 
 // Fetch all blogs
 export const fetchAllBlogs = async (category = '', sortBy = 'createdAt', order = 'desc') => {
@@ -34,14 +35,19 @@ export const fetchBlogById = async (id) => {
     }
 };
 
+const defaultHeaders = (isJson = true) => {
+    const headers = {};
+    if (isJson) headers['Content-Type'] = 'application/json';
+    const auth = authService.getAuthHeader();
+    return { ...headers, ...auth };
+};
+
 // Create a new blog
 export const createBlog = async (blogData) => {
     try {
         const response = await fetch(`${API_URL}/blogs`, {
             method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: defaultHeaders(),
             body: JSON.stringify(blogData),
         });
         if (!response.ok) {
@@ -61,9 +67,7 @@ export const updateBlog = async (id, blogData) => {
     try {
         const response = await fetch(`${API_URL}/blogs/${id}`, {
             method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json',
-            },
+            headers: defaultHeaders(),
             body: JSON.stringify(blogData),
         });
         if (!response.ok) {
@@ -83,6 +87,7 @@ export const deleteBlog = async (id) => {
     try {
         const response = await fetch(`${API_URL}/blogs/${id}`, {
             method: 'DELETE',
+            headers: defaultHeaders(false),
         });
         if (!response.ok) {
             const errorData = await response.json();

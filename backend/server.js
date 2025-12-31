@@ -4,6 +4,7 @@ require('dotenv').config();
 
 const connectDB = require('./config/database');
 const blogRoutes = require('./routes/blogRoutes');
+const authRoutes = require('./routes/authRoutes');
 const errorHandler = require('./middleware/errorHandler');
 
 // Initialize Express app
@@ -19,6 +20,7 @@ app.use(express.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/blogs', blogRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

@@ -28,6 +28,28 @@ const blogSchema = new mongoose.Schema(
             enum: ['Technology', 'Travel', 'Food', 'Lifestyle', 'Other'],
             default: 'Other',
         },
+        tags: {
+            type: [String],
+            default: [],
+        },
+        images: {
+            type: [String],
+            default: [],
+        },
+        likes: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'User',
+            },
+        ],
+        views: {
+            type: Number,
+            default: 0,
+        },
+        authorRef: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User',
+        },
     },
     {
         timestamps: true,
