@@ -57,6 +57,7 @@ const BlogList = () => {
                         <option value="Travel">Travel</option>
                         <option value="Food">Food</option>
                         <option value="Lifestyle">Lifestyle</option>
+                        <option value="Mindfulness">Mindfulness</option>
                         <option value="Other">Other</option>
                     </select>
                 </div>

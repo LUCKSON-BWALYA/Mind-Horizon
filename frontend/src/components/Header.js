@@ -19,7 +19,9 @@ const Header = () => {
                     <Link to="/" className="logo">
                         <img src="/icon.jpg" alt="Mind Horizon Logo" className="logo-icon" />
                         <h1>Mind Horizon</h1>
-                        <p className="tagline">Your Blog, Your Voice</p>
+                        <p className="tagline">Your Mind shapes every results you get, What you Focus on grows,
+                            what you pratice becomes automatic.
+                        </p>
                     </Link>
                 </div>
                 <nav className="nav-menu">
@@ -27,17 +29,17 @@ const Header = () => {
                         All Posts
                     </Link>
                     <Link to="/create" className="nav-link btn-create">
-                        Write Post
+                        Create Post
                     </Link>
                     {user ? (
                         <>
                             <span className="nav-user">Hello, {user.name}</span>
-                            <button className="nav-link btn-ghost" onClick={handleLogout}>Logout</button>
+                            <button className="nav-link btn-ghost" onClick={handleLogout}>sign out</button>
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="nav-link">Login</Link>
-                            <Link to="/register" className="nav-link">Register</Link>
+                            <Link to="/login" className="nav-link">Sign in</Link>
+                            <Link to="/register" className="nav-link">Singn up</Link>
                         </>
                     )}
                 </nav>

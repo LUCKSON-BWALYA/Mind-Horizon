@@ -8,8 +8,8 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
                 <div className="footer-content">
-                    <p>&copy; {currentYear} Mind Horizon. All rights reserved.</p>
-                    <p>A professional blog platform built with React and Node.js</p>
+                    <p>&copy; {currentYear}©2026 Mind Horizon. Empowered by Codveda Technologies. All rights reserved.</p>
+                    <p>Ispired By Ms. Kalonde. </p>
                 </div>
             </div>
         </footer>

@@ -19,7 +19,7 @@ const BlogDetail = () => {
                 setBlog(data);
                 setError(null);
             } catch (err) {
-                setError('Failed to load blog post. Please try again.');
+                setError('Easy Your Mind us we try to fetch your blog post. Please try again.');
                 console.error(err);
             } finally {
                 setLoading(false);
