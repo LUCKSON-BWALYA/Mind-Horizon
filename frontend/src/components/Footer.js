@@ -8,7 +8,7 @@ const Footer = () => {
         <footer className="footer">
             <div className="footer-container">
                 <div className="footer-content">
-                    <p>&copy; {currentYear}©2026 Mind Horizon. Empowered by Codveda Technologies. All rights reserved.</p>
+                    <p>&copy; {currentYear} Mind Horizon. Empowered by Codveda Technologies. All rights reserved.</p>
                     <p>Ispired By Ms. Kalonde. </p>
                 </div>
             </div>

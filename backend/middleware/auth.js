@@ -1,5 +1,5 @@
-import { verify } from 'jsonwebtoken';
-import { findById } from '../models/User';
+const jwt = require('jsonwebtoken');
+const User = require('../models/User');
 
 const protect = async (req, res, next) => {
     let token;
@@ -16,8 +16,8 @@ const protect = async (req, res, next) => {
     }
 
     try {
-        const decoded = verify(token, process.env.JWT_SECRET || 'secretkey');
-        const user = await findById(decoded.id).select('-password');
+        const decoded = jwt.verify(token, process.env.JWT_SECRET || 'secretkey');
+        const user = await User.findById(decoded.id).select('-password');
         if (!user) {
             return res.status(401).json({ success: false, error: 'Not authorized, user not found' });
         }
@@ -29,4 +29,4 @@ const protect = async (req, res, next) => {
     }
 };
 
-export default protect;
+module.exports = protect;

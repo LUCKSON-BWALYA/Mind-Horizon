@@ -7,7 +7,7 @@ const {
     updateBlog,
     deleteBlog,
 } = require('../controllers/blogController');
-const { protect } = require('../middleware/auth');
+const protect = require('../middleware/auth');
 
 // Create a new blog post (protected)
 router.post('/', protect, createBlog);
