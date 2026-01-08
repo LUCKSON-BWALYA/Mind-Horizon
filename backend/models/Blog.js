@@ -25,12 +25,16 @@ const blogSchema = new mongoose.Schema(
         },
         category: {
             type: String,
-            enum: ['Technology', 'Travel', 'Food', 'Lifestyle', 'Other'],
+            enum: ['Technology', 'Travel', 'Food', 'Lifestyle', 'Mindfulness', 'Other'],
             default: 'Other',
         },
         tags: {
             type: [String],
             default: [],
+        },
+        featuredImage: {
+            type: String,
+            default: null,
         },
         images: {
             type: [String],
@@ -46,6 +50,12 @@ const blogSchema = new mongoose.Schema(
             type: Number,
             default: 0,
         },
+        comments: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Comment',
+            },
+        ],
         authorRef: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',

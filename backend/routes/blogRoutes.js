@@ -8,9 +8,10 @@ const {
     deleteBlog,
 } = require('../controllers/blogController');
 const protect = require('../middleware/auth');
+const upload = require('../middleware/fileUpload');
 
-// Create a new blog post (protected)
-router.post('/', protect, createBlog);
+// Create a new blog post (protected, with image upload)
+router.post('/', protect, upload.single('featuredImage'), createBlog);
 
 // Get all blog posts
 router.get('/', getAllBlogs);
@@ -18,8 +19,8 @@ router.get('/', getAllBlogs);
 // Get a single blog post by ID
 router.get('/:id', getBlogById);
 
-// Update a blog post (protected)
-router.put('/:id', protect, updateBlog);
+// Update a blog post (protected, with image upload)
+router.put('/:id', protect, upload.single('featuredImage'), updateBlog);
 
 // Delete a blog post (protected)
 router.delete('/:id', protect, deleteBlog);

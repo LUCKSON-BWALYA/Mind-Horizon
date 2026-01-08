@@ -1,4 +1,6 @@
 const Blog = require('../models/Blog');
+const fs = require('fs');
+const path = require('path');
 
 // Create a new blog post
 exports.createBlog = async (req, res, next) => {
@@ -7,25 +9,38 @@ exports.createBlog = async (req, res, next) => {
 
         // Validation
         if (!title || !content || !author) {
+            if (req.file) {
+                fs.unlinkSync(req.file.path);
+            }
             return res.status(400).json({
                 success: false,
                 error: 'Title, content, and author are required',
             });
         }
 
-        const blog = await Blog.create({
+        const blogData = {
             title,
             content,
             author,
             description,
             category,
-        });
+        };
+
+        // Add featured image if uploaded
+        if (req.file) {
+            blogData.featuredImage = `/uploads/${req.file.filename}`;
+        }
+
+        const blog = await Blog.create(blogData);
 
         res.status(201).json({
             success: true,
             data: blog,
         });
     } catch (error) {
+        if (req.file) {
+            fs.unlinkSync(req.file.path);
+        }
         next(error);
     }
 };
@@ -63,7 +78,11 @@ exports.getBlogById = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const blog = await Blog.findById(id);
+        const blog = await Blog.findByIdAndUpdate(
+            id,
+            { $inc: { views: 1 } },
+            { new: true }
+        ).populate('comments');
 
         if (!blog) {
             return res.status(404).json({
@@ -89,6 +108,9 @@ exports.updateBlog = async (req, res, next) => {
 
         // Validation
         if (!title || !content || !author) {
+            if (req.file) {
+                fs.unlinkSync(req.file.path);
+            }
             return res.status(400).json({
                 success: false,
                 error: 'Title, content, and author are required',
@@ -98,26 +120,42 @@ exports.updateBlog = async (req, res, next) => {
         let blog = await Blog.findById(id);
 
         if (!blog) {
+            if (req.file) {
+                fs.unlinkSync(req.file.path);
+            }
             return res.status(404).json({
                 success: false,
                 error: 'Blog post not found',
             });
         }
 
-        blog = await Blog.findByIdAndUpdate(
-            id,
-            { title, content, author, description, category },
-            {
-                new: true,
-                runValidators: true,
+        const updateData = { title, content, author, description, category };
+
+        // Handle new image upload
+        if (req.file) {
+            // Delete old image if exists
+            if (blog.featuredImage) {
+                const oldImagePath = path.join(__dirname, '..', blog.featuredImage);
+                if (fs.existsSync(oldImagePath)) {
+                    fs.unlinkSync(oldImagePath);
+                }
             }
-        );
+            updateData.featuredImage = `/uploads/${req.file.filename}`;
+        }
+
+        blog = await Blog.findByIdAndUpdate(id, updateData, {
+            new: true,
+            runValidators: true,
+        });
 
         res.status(200).json({
             success: true,
             data: blog,
         });
     } catch (error) {
+        if (req.file) {
+            fs.unlinkSync(req.file.path);
+        }
         next(error);
     }
 };
@@ -134,6 +172,14 @@ exports.deleteBlog = async (req, res, next) => {
                 success: false,
                 error: 'Blog post not found',
             });
+        }
+
+        // Delete featured image if exists
+        if (blog.featuredImage) {
+            const imagePath = path.join(__dirname, '..', blog.featuredImage);
+            if (fs.existsSync(imagePath)) {
+                fs.unlinkSync(imagePath);
+            }
         }
 
         res.status(200).json({
