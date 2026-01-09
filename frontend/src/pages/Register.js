@@ -30,7 +30,7 @@ const Register = () => {
         return (
             <div className="welcome-container">
                 <div className="welcome-content">
-                    <img src="/meditation.svg" alt="Welcome" className="welcome-image" />
+                    <div className="welcome-icon">✨</div>
                     <h1 className="welcome-title">WELCOME TO MIND-HORIZON</h1>
                     <p className="welcome-subtitle">Find peace in sharing your thoughts</p>
                 </div>
@@ -41,7 +41,11 @@ const Register = () => {
     return (
         <div className="auth-page">
             <div className="auth-visual">
-                <img src="/meditation.svg" alt="Meditation" className="auth-image" />
+                <div className="auth-visual-content">
+                    <div className="meditation-icon">🧘‍♂️</div>
+                    <h1 className="auth-visual-title">Mind Horizon</h1>
+                    <p className="auth-visual-text">Share your thoughts, find your peace</p>
+                </div>
             </div>
             <div className="auth-container">
                 <h2>Create Account</h2>

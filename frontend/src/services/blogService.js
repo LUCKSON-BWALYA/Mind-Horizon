@@ -46,10 +46,11 @@ const defaultHeaders = (isJson = true) => {
 // Create a new blog
 export const createBlog = async (blogData) => {
     try {
+        const isForm = blogData instanceof FormData;
         const response = await fetch(`${API_URL}/blogs`, {
             method: 'POST',
-            headers: defaultHeaders(),
-            body: JSON.stringify(blogData),
+            headers: defaultHeaders(!isForm),
+            body: isForm ? blogData : JSON.stringify(blogData),
         });
         if (!response.ok) {
             const errorData = await response.json();
@@ -66,10 +67,11 @@ export const createBlog = async (blogData) => {
 // Update a blog
 export const updateBlog = async (id, blogData) => {
     try {
+        const isForm = blogData instanceof FormData;
         const response = await fetch(`${API_URL}/blogs/${id}`, {
             method: 'PUT',
-            headers: defaultHeaders(),
-            body: JSON.stringify(blogData),
+            headers: defaultHeaders(!isForm),
+            body: isForm ? blogData : JSON.stringify(blogData),
         });
         if (!response.ok) {
             const errorData = await response.json();
