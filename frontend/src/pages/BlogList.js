@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchAllBlogs } from '../services/blogService';
+import Loader from '../components/Loader';
 import '../styles/BlogList.css';
 
 const BlogList = () => {
@@ -63,7 +64,7 @@ const BlogList = () => {
     };
 
     if (loading) {
-        return <div className="loading">Loading blogs...</div>;
+        return <Loader type="spinner" />;
     }
 
     return (

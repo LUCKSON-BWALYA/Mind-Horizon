@@ -3,6 +3,7 @@ import { useNavigate, useParams, Link } from 'react-router-dom';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import { createBlog, updateBlog, fetchBlogById } from '../services/blogService';
+import Loader from '../components/Loader';
 import '../styles/BlogForm.css';
 
 const BlogForm = () => {
@@ -164,8 +165,12 @@ const BlogForm = () => {
         }
     };
 
+    if (loading) {
+        return <Loader type="words" />;
+    }
+
     if (isLoadingBlog) {
-        return <div className="loading">Loading blog post...</div>;
+        return <Loader type="spinner" />;
     }
 
     return (
