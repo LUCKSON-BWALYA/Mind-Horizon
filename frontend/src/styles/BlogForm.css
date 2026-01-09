@@ -149,8 +149,51 @@
     transition: var(--transition);
 }
 
-.btn-remove-image:hover {
-    background-color: #c23b22;
+/* Rich Text Editor Styles */
+.quill-editor {
+    background-color: white;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
+    min-height: 400px;
+    margin-bottom: 1rem;
+}
+
+.quill-editor .ql-toolbar {
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+    border-bottom: 1px solid var(--border-color);
+    background-color: #fafaf8;
+}
+
+.quill-editor .ql-container {
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    font-size: 1rem;
+    font-family: inherit;
+}
+
+.quill-editor .ql-editor {
+    min-height: 350px;
+    padding: 1rem;
+}
+
+.quill-editor .ql-toolbar button {
+    color: var(--dark-text);
+}
+
+.quill-editor .ql-toolbar button:hover,
+.quill-editor .ql-toolbar button.ql-active {
+    color: var(--primary-color);
+}
+
+.quill-editor .ql-snow a {
+    color: var(--primary-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.quill-editor:focus-within {
+    box-shadow: 0 0 0 3px rgba(63, 136, 141, 0.1);
 }
 
 .form-actions {

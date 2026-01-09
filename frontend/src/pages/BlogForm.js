@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 import { createBlog, updateBlog, fetchBlogById } from '../services/blogService';
 import '../styles/BlogForm.css';
 
@@ -21,6 +23,29 @@ const BlogForm = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isLoadingBlog, setIsLoadingBlog] = useState(isEditMode);
+
+    // Quill modules configuration
+    const modules = {
+        toolbar: [
+            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+            ['bold', 'italic', 'underline', 'strike'],
+            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+            [{ 'indent': '-1' }, { 'indent': '+1' }],
+            ['blockquote', 'code-block'],
+            [{ 'color': [] }, { 'background': [] }],
+            ['link', 'image', 'video'],
+            ['clean'],
+        ],
+    };
+
+    const formats = [
+        'header',
+        'bold', 'italic', 'underline', 'strike',
+        'list', 'bullet', 'indent',
+        'blockquote', 'code-block',
+        'color', 'background',
+        'link', 'image', 'video',
+    ];
 
     useEffect(() => {
         if (isEditMode) {
@@ -55,6 +80,13 @@ const BlogForm = () => {
         setFormData((prev) => ({
             ...prev,
             [name]: value,
+        }));
+    };
+
+    const handleContentChange = (value) => {
+        setFormData((prev) => ({
+            ...prev,
+            content: value,
         }));
     };
 
@@ -96,16 +128,12 @@ const BlogForm = () => {
             setError('Title is required');
             return;
         }
-        if (!formData.content.trim()) {
-            setError('Content is required');
+        if (!formData.content || formData.content.trim().length < 10) {
+            setError('Content must be at least 10 characters');
             return;
         }
         if (!formData.author.trim()) {
             setError('Author name is required');
-            return;
-        }
-        if (formData.content.trim().length < 10) {
-            setError('Content must be at least 10 characters');
             return;
         }
 
@@ -250,19 +278,16 @@ const BlogForm = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="content">Content *</label>
-                    <textarea
-                        id="content"
-                        name="content"
+                    <label htmlFor="content">Content * (Rich Text)</label>
+                    <ReactQuill
                         value={formData.content}
-                        onChange={handleChange}
+                        onChange={handleContentChange}
+                        modules={modules}
+                        formats={formats}
+                        className="quill-editor"
                         placeholder="Write your blog post content here..."
-                        rows="15"
-                        required
+                        theme="snow"
                     />
-                    <span className="char-count">
-                        {formData.content.length} characters
-                    </span>
                 </div>
 
                 <div className="form-actions">
@@ -280,133 +305,6 @@ const BlogForm = () => {
             </form>
         </div>
     );
-};
-
-export default BlogForm;
-navigate(`/blog/${id}`);
-            } else {
-    const newBlog = await createBlog(formData);
-    navigate(`/blog/${newBlog._id}`);
-}
-        } catch (err) {
-    setError(err.message || 'Failed to save blog post.');
-    console.error(err);
-} finally {
-    setLoading(false);
-}
-    };
-
-if (isLoadingBlog) {
-    return <div className="loading">Loading blog post...</div>;
-}
-
-return (
-    <div className="blog-form-container">
-        <div className="form-header">
-            <h1>{isEditMode ? 'Edit Blog Post' : 'Create New Blog Post'}</h1>
-        </div>
-
-        {error && <div className="error-message">{error}</div>}
-
-        <form onSubmit={handleSubmit} className="blog-form">
-            <div className="form-group">
-                <label htmlFor="title">Title *</label>
-                <input
-                    type="text"
-                    id="title"
-                    name="title"
-                    value={formData.title}
-                    onChange={handleChange}
-                    placeholder="Enter blog post title"
-                    maxLength="200"
-                    required
-                />
-                <span className="char-count">
-                    {formData.title.length}/200
-                </span>
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="author">Author *</label>
-                <input
-                    type="text"
-                    id="author"
-                    name="author"
-                    value={formData.author}
-                    onChange={handleChange}
-                    placeholder="Enter author name"
-                    maxLength="100"
-                    required
-                />
-                <span className="char-count">
-                    {formData.author.length}/100
-                </span>
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="category">Category</label>
-                <select
-                    id="category"
-                    name="category"
-                    value={formData.category}
-                    onChange={handleChange}
-                >
-                    <option value="Technology">Technology</option>
-                    <option value="Travel">Travel</option>
-                    <option value="Food">Food</option>
-                    <option value="Lifestyle">Lifestyle</option>
-                    <option value="Mindfulness">Mindfulness</option>
-                    <option value="Other">Other</option>
-                </select>
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="description">Description</label>
-                <input
-                    type="text"
-                    id="description"
-                    name="description"
-                    value={formData.description}
-                    onChange={handleChange}
-                    placeholder="Brief description of the blog post (optional)"
-                    maxLength="300"
-                />
-                <span className="char-count">
-                    {formData.description.length}/300
-                </span>
-            </div>
-
-            <div className="form-group">
-                <label htmlFor="content">Content *</label>
-                <textarea
-                    id="content"
-                    name="content"
-                    value={formData.content}
-                    onChange={handleChange}
-                    placeholder="Write your blog post content here..."
-                    rows="15"
-                    required
-                />
-                <span className="char-count">
-                    {formData.content.length} characters
-                </span>
-            </div>
-
-            <div className="form-actions">
-                <button
-                    type="submit"
-                    className="btn btn-primary"
-                    disabled={loading}
-                >
-                    {loading ? 'Saving...' : isEditMode ? 'Update Post' : 'Publish Post'}
-                </button>
-                <Link to="/" className="btn btn-secondary">
-                    Cancel
-                </Link>
-            </div>
-        </form>
-    </div>
-);
 };
 
 export default BlogForm;

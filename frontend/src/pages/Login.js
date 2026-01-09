@@ -29,7 +29,7 @@ const Login = () => {
         return (
             <div className="welcome-container">
                 <div className="welcome-content">
-                    <img src="/meditation.svg" alt="Welcome" className="welcome-image" />
+                    <img src="C:\Users\L B\Desktop\Mind-Horizon\frontend\public\Peaceful.png" alt="MINDFULNESS" className="welcome-image" />
                     <h1 className="welcome-title">WELCOME TO MIND-HORIZON</h1>
                     <p className="welcome-subtitle">Find peace in sharing your thoughts</p>
                 </div>
@@ -40,7 +40,7 @@ const Login = () => {
     return (
         <div className="auth-page">
             <div className="auth-visual">
-                <img src="/meditation.svg" alt="Meditation" className="auth-image" />
+                <img src="C:\Users\L B\Desktop\Mind-Horizon\frontend\public\Peaceful.png" alt="Meditation" className="auth-image" />
             </div>
             <div className="auth-container">
                 <h2>Sign In</h2>
