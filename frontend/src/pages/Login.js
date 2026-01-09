@@ -43,39 +43,42 @@ const Login = () => {
                 <img src="/Peaceful.png" alt="Meditation" className="auth-image" />
             </div>
             <div className="auth-container">
-                <h2>Sign In</h2>
-                {error && <div className="auth-error">{error}</div>}
-                <form onSubmit={handleSubmit} className="auth-form">
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
-                            required
-                        />
+                <div className="container">
+                    <div className="login-box">
+                        <div className="header">Sign In</div>
+                        {error && <div className="auth-error">{error}</div>}
+                        <form onSubmit={handleSubmit} className="form">
+                            <input
+                                className="input"
+                                id="email"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Email"
+                                required
+                            />
+
+                            <input
+                                className="input"
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Password"
+                                required
+                            />
+
+                            <button type="submit" className="button sign-in">Sign In</button>
+                        </form>
+
+                        <div className="auth-divider">
+                            <span>or</span>
+                        </div>
+                        <p className="auth-footer">
+                            Don't have an account? <Link to="/register" className="auth-link">Create one</Link>
+                        </p>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Enter your password"
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Sign In</button>
-                </form>
-                <div className="auth-divider">
-                    <span>or</span>
                 </div>
-                <p className="auth-footer">
-                    Don't have an account? <Link to="/register" className="auth-link">Create one</Link>
-                </p>
             </div>
         </div>
     );

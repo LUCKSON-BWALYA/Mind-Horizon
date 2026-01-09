@@ -48,50 +48,52 @@ const Register = () => {
                 </div>
             </div>
             <div className="auth-container">
-                <h2>Create Account</h2>
-                {error && <div className="auth-error">{error}</div>}
-                <form onSubmit={handleSubmit} className="auth-form">
-                    <div className="form-group">
-                        <label htmlFor="name">Full Name</label>
-                        <input
-                            id="name"
-                            type="text"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            placeholder="Enter your full name"
-                            required
-                        />
+                <div className="container">
+                    <div className="login-box">
+                        <div className="header">Create Account</div>
+                        {error && <div className="auth-error">{error}</div>}
+                        <form onSubmit={handleSubmit} className="form">
+                            <input
+                                className="input"
+                                id="name"
+                                type="text"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                placeholder="Full name"
+                                required
+                            />
+
+                            <input
+                                className="input"
+                                id="email"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="Email"
+                                required
+                            />
+
+                            <input
+                                className="input"
+                                id="password"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="Password"
+                                required
+                            />
+
+                            <button type="submit" className="button">Sign Up</button>
+                        </form>
+
+                        <div className="auth-divider">
+                            <span>or</span>
+                        </div>
+                        <p className="auth-footer">
+                            Already have an account? <Link to="/login" className="auth-link">Sign in</Link>
+                        </p>
                     </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            id="email"
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="Enter your email"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            id="password"
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="Create a password"
-                            required
-                        />
-                    </div>
-                    <button type="submit" className="btn btn-primary">Sign Up</button>
-                </form>
-                <div className="auth-divider">
-                    <span>or</span>
                 </div>
-                <p className="auth-footer">
-                    Already have an account? <Link to="/login" className="auth-link">Sign in</Link>
-                </p>
             </div>
         </div>
     );
