@@ -211,6 +211,47 @@
     text-align: center;
 }
 
+.btn-edit {
+    background-color: #fff3cd;
+    color: #856404;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit:hover {
+    background-color: #ffeaa7;
+    transform: translateY(-2px);
+}
+
+.btn-delete {
+    background-color: #f8d7da;
+    color: #721c24;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover:not(:disabled) {
+    background-color: #f5c6cb;
+    transform: translateY(-2px);
+}
+
+.btn-delete:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
 /* No Blogs */
 .no-blogs {
     background-color: white;

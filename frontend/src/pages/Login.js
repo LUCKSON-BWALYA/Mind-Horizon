@@ -18,8 +18,8 @@ const Login = () => {
             await login({ email, password });
             setShowWelcome(true);
             setTimeout(() => {
-                navigate('/');
-            }, 2000);
+                navigate('/blogs');
+            }, 2500);
         } catch (err) {
             setError(err.message || 'Login failed');
         }
@@ -74,6 +74,19 @@ const Login = () => {
                         <div className="auth-divider">
                             <span>or</span>
                         </div>
+
+                        <button
+                            type="button"
+                            onClick={() => navigate('/blogs')}
+                            className="button guest-btn"
+                        >
+                            View as Guest
+                        </button>
+
+                        <div className="auth-divider">
+                            <span>or</span>
+                        </div>
+
                         <p className="auth-footer">
                             Don't have an account? <Link to="/register" className="auth-link">Create one</Link>
                         </p>

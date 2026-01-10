@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams, Link } from 'react-router-dom';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css';
 import { createBlog, updateBlog, fetchBlogById } from '../services/blogService';
 import Loader from '../components/Loader';
 import '../styles/BlogForm.css';
@@ -24,29 +22,6 @@ const BlogForm = () => {
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
     const [isLoadingBlog, setIsLoadingBlog] = useState(isEditMode);
-
-    // Quill modules configuration
-    const modules = {
-        toolbar: [
-            [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
-            ['bold', 'italic', 'underline', 'strike'],
-            [{ 'list': 'ordered' }, { 'list': 'bullet' }],
-            [{ 'indent': '-1' }, { 'indent': '+1' }],
-            ['blockquote', 'code-block'],
-            [{ 'color': [] }, { 'background': [] }],
-            ['link', 'image', 'video'],
-            ['clean'],
-        ],
-    };
-
-    const formats = [
-        'header',
-        'bold', 'italic', 'underline', 'strike',
-        'list', 'bullet', 'indent',
-        'blockquote', 'code-block',
-        'color', 'background',
-        'link', 'image', 'video',
-    ];
 
     useEffect(() => {
         if (isEditMode) {
@@ -283,16 +258,19 @@ const BlogForm = () => {
                 </div>
 
                 <div className="form-group">
-                    <label htmlFor="content">Content * (Rich Text)</label>
-                    <ReactQuill
+                    <label htmlFor="content">Content *</label>
+                    <textarea
+                        id="content"
+                        name="content"
                         value={formData.content}
-                        onChange={handleContentChange}
-                        modules={modules}
-                        formats={formats}
-                        className="quill-editor"
+                        onChange={(e) => handleContentChange(e.target.value)}
                         placeholder="Write your blog post content here..."
-                        theme="snow"
+                        className="content-textarea"
+                        required
                     />
+                    <span className="char-count">
+                        {formData.content.length} characters
+                    </span>
                 </div>
 
                 <div className="form-actions">
@@ -303,9 +281,15 @@ const BlogForm = () => {
                     >
                         {loading ? 'Saving...' : isEditMode ? 'Update Post' : 'Publish Post'}
                     </button>
-                    <Link to="/" className="btn btn-secondary">
-                        Cancel
-                    </Link>
+                    {isEditMode ? (
+                        <Link to={`/blog/${id}`} className="btn btn-secondary">
+                            Cancel
+                        </Link>
+                    ) : (
+                        <Link to="/my-posts" className="btn btn-secondary">
+                            Cancel
+                        </Link>
+                    )}
                 </div>
             </form>
         </div>

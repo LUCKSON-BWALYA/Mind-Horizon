@@ -19,8 +19,8 @@ const Register = () => {
             await register({ name, email, password });
             setShowWelcome(true);
             setTimeout(() => {
-                navigate('/');
-            }, 2000);
+                navigate('/blogs');
+            }, 2500);
         } catch (err) {
             setError(err.message || 'Registration failed');
         }

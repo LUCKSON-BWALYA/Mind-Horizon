@@ -1,87 +1,113 @@
-/* Blog Form Styles */
+/* Blog Form Styles - Modern Facebook-like Design */
 .blog-form-container {
     animation: fadeIn 0.3s ease-in;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+    background: linear-gradient(135deg, rgba(63, 136, 141, 0.05) 0%, rgba(208, 182, 206, 0.05) 100%);
 }
 
 .form-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 30px;
 }
 
 .form-header h1 {
-    font-size: 2rem;
+    font-size: 28px;
     color: var(--dark-text);
-    margin-bottom: 0.5rem;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+/* Error Message */
+.error-message {
+    background-color: #ffe0e0;
+    color: #c23b22;
+    padding: 14px 16px;
+    border-radius: 10px;
+    border-left: 4px solid #c23b22;
+    margin-bottom: 20px;
+    font-weight: 500;
 }
 
 .blog-form {
     background-color: white;
-    border-radius: 0.75rem;
-    padding: 2.5rem;
-    box-shadow: var(--shadow);
-    max-width: 800px;
-    margin: 0 auto;
+    border-radius: 14px;
+    padding: 30px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .form-group {
-    margin-bottom: 2rem;
+    margin-bottom: 24px;
     position: relative;
 }
 
-.form-group:last-child {
-    margin-bottom: 2rem;
+.form-group:last-of-type {
+    margin-bottom: 24px;
 }
 
 .form-group label {
     display: block;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
+    margin-bottom: 8px;
+    font-weight: 700;
     color: var(--dark-text);
-    font-size: 0.95rem;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group select {
     width: 100%;
-    padding: 0.85rem;
-    border: 1px solid var(--border-color);
-    border-radius: 0.5rem;
-    font-size: 1rem;
+    padding: 12px 14px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
     font-family: inherit;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     background-color: white;
+    color: var(--dark-text);
+}
+
+.form-group input::placeholder,
+.form-group select::placeholder {
+    color: #999;
 }
 
 .form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
+.form-group select:focus {
     outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    border-color: var(--dark-cyan);
+    background-color: #fafbfc;
+    box-shadow: 0 0 0 4px rgba(63, 136, 141, 0.1);
 }
 
-.form-group textarea {
-    resize: vertical;
-    min-height: 400px;
-    font-family: 'Courier New', monospace;
-    line-height: 1.6;
+.form-group select {
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 18px;
+    padding-right: 35px;
 }
 
 .char-count {
     position: absolute;
     right: 12px;
-    bottom: -1.75rem;
-    font-size: 0.8rem;
-    color: var(--gray-text);
+    bottom: -22px;
+    font-size: 12px;
+    color: #999;
     background-color: white;
-    padding: 0 0.25rem;
+    padding: 0 4px;
+    font-weight: 500;
 }
 
 /* Image Upload Styles */
 .image-upload-wrapper {
     position: relative;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
 }
 
 .file-input {
@@ -93,171 +119,223 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0.75rem;
-    padding: 2.5rem 1.5rem;
-    border: 2px dashed var(--primary-color);
-    border-radius: 0.75rem;
-    background-color: rgba(63, 136, 141, 0.02);
+    gap: 12px;
+    padding: 40px 24px;
+    border: 2px dashed rgba(63, 136, 141, 0.3);
+    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(63, 136, 141, 0.03) 0%, rgba(208, 182, 206, 0.03) 100%);
     cursor: pointer;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     text-align: center;
 }
 
 .file-label:hover {
-    background-color: rgba(63, 136, 141, 0.05);
-    border-color: var(--secondary-color);
+    background: linear-gradient(135deg, rgba(63, 136, 141, 0.08) 0%, rgba(208, 182, 206, 0.08) 100%);
+    border-color: rgba(63, 136, 141, 0.5);
 }
 
 .upload-icon {
-    font-size: 3rem;
+    font-size: 48px;
+    display: block;
 }
 
 .upload-text {
-    font-size: 0.95rem;
+    font-size: 14px;
     color: var(--dark-text);
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .image-preview {
     position: relative;
-    margin-top: 1.5rem;
-    border-radius: 0.75rem;
+    margin-top: 20px;
+    border-radius: 10px;
     overflow: hidden;
     max-width: 100%;
+    background: white;
+    border: 1px solid var(--border-color);
 }
 
 .image-preview img {
     width: 100%;
     height: auto;
     display: block;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .btn-remove-image {
     position: absolute;
-    top: 0.75rem;
-    right: 0.75rem;
-    padding: 0.5rem 1rem;
-    background-color: rgba(194, 59, 34, 0.9);
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    background-color: rgba(194, 59, 34, 0.85);
     color: white;
     border: none;
-    border-radius: 0.5rem;
+    border-radius: 8px;
     cursor: pointer;
-    font-weight: 500;
-    font-size: 0.85rem;
-    transition: var(--transition);
+    font-weight: 600;
+    font-size: 12px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(5px);
 }
 
-/* Rich Text Editor Styles */
-.quill-editor {
-    background-color: white;
-    border-radius: 0.5rem;
-    border: 1px solid var(--border-color);
-    min-height: 400px;
-    margin-bottom: 1rem;
+.btn-remove-image:hover {
+    background-color: #c23b22;
+    transform: translateY(-1px);
 }
 
-.quill-editor .ql-toolbar {
-    border-top-left-radius: 0.5rem;
-    border-top-right-radius: 0.5rem;
-    border-bottom: 1px solid var(--border-color);
-    background-color: #fafaf8;
-}
-
-.quill-editor .ql-container {
-    border-bottom-left-radius: 0.5rem;
-    border-bottom-right-radius: 0.5rem;
-    font-size: 1rem;
+/* Content Textarea Styles */
+.content-textarea {
+    width: 100%;
+    padding: 16px;
+    border: 1.5px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 15px;
     font-family: inherit;
-}
-
-.quill-editor .ql-editor {
-    min-height: 350px;
-    padding: 1rem;
-}
-
-.quill-editor .ql-toolbar button {
+    min-height: 300px;
+    resize: vertical;
+    transition: all 0.3s ease;
     color: var(--dark-text);
+    background-color: white;
+    line-height: 1.6;
 }
 
-.quill-editor .ql-toolbar button:hover,
-.quill-editor .ql-toolbar button.ql-active {
-    color: var(--primary-color);
+.content-textarea::placeholder {
+    color: #999;
 }
 
-.quill-editor .ql-snow a {
-    color: var(--primary-color);
+.content-textarea:focus {
+    outline: none;
+    border-color: var(--dark-cyan);
+    background-color: #fafbfc;
+    box-shadow: 0 0 0 4px rgba(63, 136, 141, 0.1);
 }
 
-.form-group input:focus,
-.form-group select:focus,
-.quill-editor:focus-within {
-    box-shadow: 0 0 0 3px rgba(63, 136, 141, 0.1);
-}
-
+/* Form Actions */
 .form-actions {
-    display: flex;
-    gap: 1rem;
-    margin-top: 2rem;
-    padding-top: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 30px;
+    padding-top: 24px;
     border-top: 1px solid var(--border-color);
 }
 
 .form-actions .btn {
-    flex: 1;
-    text-align: center;
-    max-width: 200px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.form-actions .btn:first-child {
-    flex-basis: 50%;
+.btn-primary {
+    background: linear-gradient(135deg, var(--dark-cyan) 0%, #5a9fa0 100%);
+    color: white;
 }
 
-.form-actions .btn:last-child {
-    flex-basis: 50%;
-    background-color: var(--gray-text);
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(63, 136, 141, 0.25);
 }
 
-.form-actions .btn:last-child:hover {
-    background-color: var(--dark-text);
+.btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
 }
 
-/* Success Message */
-.success-message {
-    background-color: #dcfce7;
-    color: #166534;
-    padding: 1rem;
-    border-radius: 0.5rem;
-    border-left: 4px solid var(--success-color);
-    margin-bottom: 1.5rem;
+.btn-secondary {
+    background-color: #f0f0f0;
+    color: var(--dark-text);
+    font-weight: 700;
+}
+
+.btn-secondary:hover {
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @media (max-width: 768px) {
+    .blog-form-container {
+        padding: 12px;
+    }
+
     .blog-form {
-        padding: 1.5rem;
+        padding: 20px;
+        border-radius: 12px;
     }
 
     .form-header h1 {
-        font-size: 1.5rem;
+        font-size: 24px;
     }
 
-    .form-group textarea {
-        min-height: 300px;
+    .form-group input,
+    .form-group select {
+        font-size: 16px;
+        padding: 12px 12px;
+    }
+
+    .quill-editor {
+        min-height: 280px;
+    }
+
+    .quill-editor .ql-editor {
+        min-height: 240px;
+        padding: 12px;
     }
 
     .form-actions {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 10px;
     }
 
     .form-actions .btn {
-        max-width: none;
-        width: 100%;
-        flex: 1;
+        padding: 12px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .blog-form-container {
+        padding: 8px;
     }
 
-    .form-actions .btn:first-child,
-    .form-actions .btn:last-child {
-        flex-basis: auto;
+    .blog-form {
+        padding: 16px;
+        border-radius: 10px;
+    }
+
+    .form-header h1 {
+        font-size: 20px;
+    }
+
+    .file-label {
+        padding: 30px 16px;
+    }
+
+    .quill-editor {
+        min-height: 250px;
+    }
+
+    .quill-editor .ql-editor {
+        min-height: 200px;
     }
 }
