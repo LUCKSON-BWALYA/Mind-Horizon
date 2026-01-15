@@ -32,57 +32,106 @@ body {
     background-color: var(--light-bg);
 }
 
-/* Button Styles */
+/* Animated Button Styles (from Uiverse.io) */
+.animated-button,
 .btn {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 500;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 28px;
+    border: 4px solid transparent;
+    font-size: 16px;
+    background-color: inherit;
+    border-radius: 100px;
+    font-weight: 700;
+    color: greenyellow;
+    box-shadow: 0 0 0 2px greenyellow inset;
     cursor: pointer;
-    text-decoration: none;
-    transition: var(--transition);
-    text-align: center;
-    outline: none;
+    overflow: hidden;
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button svg {
+    position: absolute;
+    width: 20px;
+    fill: currentColor;
+    z-index: 9;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    height: 20px;
+    background-color: currentColor;
+    border-radius: 50%;
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button .text {
+    position: relative;
+    z-index: 1;
+    transform: translateX(-8px);
+    transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.animated-button:hover {
+    box-shadow: 0 0 0 12px transparent;
+    color: #212121;
+    border-radius: 12px;
+}
+
+.animated-button:hover .text {
+    transform: translateX(12px);
+}
+
+.animated-button:hover svg {
+    fill: #212121;
+}
+
+.animated-button:active {
+    transform: scale(0.95);
+}
+
+.animated-button:hover .circle {
+    width: 220px;
+    height: 220px;
+    opacity: 1;
+}
+
+/* Variant colors */
+.btn-primary {
+    --btn-color: white;
+    color: var(--btn-color);
+    background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+    box-shadow: 0 8px 20px rgba(63, 136, 141, 0.18) inset;
+}
+
+.btn-secondary {
+    color: var(--dark-text);
+    background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+    border: 2px solid var(--border-color);
+}
+
+.btn-edit {
+    color: #856404;
+    background: linear-gradient(135deg, #fff3cd 0%, #ffe8a8 100%);
+}
+
+.btn-delete,
+.btn-danger {
+    color: #721c24;
+    background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
 }
 
 .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;
-}
-
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.btn-primary:hover:not(:disabled) {
-    background-color: var(--secondary-color);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-secondary {
-    background-color: var(--gray-text);
-    color: white;
-}
-
-.btn-secondary:hover:not(:disabled) {
-    background-color: var(--dark-text);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-danger {
-    background-color: var(--danger-color);
-    color: white;
-}
-
-.btn-danger:hover:not(:disabled) {
-    background-color: #b91c1c;
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
 }
 
 /* Loading and Error Styles */

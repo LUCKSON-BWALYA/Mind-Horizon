@@ -103,3 +103,40 @@ export const deleteBlog = async (id) => {
         throw error;
     }
 };
+
+// Toggle like for a blog (requires auth)
+export const likeBlog = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/blogs/${id}/like`, {
+            method: 'POST',
+            headers: defaultHeaders(false),
+        });
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to like blog');
+        }
+        const data = await response.json();
+        return data.data;
+    } catch (error) {
+        console.error('Error liking blog:', error);
+        throw error;
+    }
+};
+
+// Increment share count for a blog
+export const shareBlog = async (id) => {
+    try {
+        const response = await fetch(`${API_URL}/blogs/${id}/share`, {
+            method: 'POST',
+        });
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.error || 'Failed to share blog');
+        }
+        const data = await response.json();
+        return data.data;
+    } catch (error) {
+        console.error('Error sharing blog:', error);
+        throw error;
+    }
+};

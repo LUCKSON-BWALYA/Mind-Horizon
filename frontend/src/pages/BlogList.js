@@ -171,6 +171,10 @@ const BlogList = () => {
                                 <div className="blog-meta">
                                     <span className="author">By {blog.author}</span>
                                     <span className="date">{formatDate(blog.createdAt)}</span>
+                                    <span className="meta-badge">👁️ {blog.views || 0}</span>
+                                    <span className="meta-badge">👍 {blog.likes ? blog.likes.length : 0}</span>
+                                    <span className="meta-badge">💬 {blog.comments ? blog.comments.length : 0}</span>
+                                    <span className="meta-badge">🔗 {blog.shares || 0}</span>
                                 </div>
                                 <div className="blog-actions">
                                     <Link to={`/blog/${blog._id}`} className="btn btn-secondary">

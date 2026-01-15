@@ -7,6 +7,7 @@ const {
     updateBlog,
     deleteBlog,
 } = require('../controllers/blogController');
+const { likeBlog, shareBlog } = require('../controllers/blogController');
 const protect = require('../middleware/auth');
 const upload = require('../middleware/fileUpload');
 
@@ -18,6 +19,12 @@ router.get('/', getAllBlogs);
 
 // Get a single blog post by ID
 router.get('/:id', getBlogById);
+
+// Like a blog post (toggle)
+router.post('/:id/like', protect, likeBlog);
+
+// Share a blog post (increments share count)
+router.post('/:id/share', shareBlog);
 
 // Update a blog post (protected, with image upload)
 router.put('/:id', protect, upload.single('featuredImage'), updateBlog);

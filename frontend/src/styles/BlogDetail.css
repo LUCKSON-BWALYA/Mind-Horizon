@@ -45,6 +45,21 @@
     margin: 0;
 }
 
+.post-stats {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: center;
+}
+
+.post-stats .stat {
+    background: rgba(0, 0, 0, 0.04);
+    padding: 6px 10px;
+    border-radius: 12px;
+    font-weight: 600;
+    color: var(--dark-text);
+}
+
 .blog-meta-info {
     display: flex;
     flex-wrap: wrap;

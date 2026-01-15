@@ -1,6 +1,6 @@
 /* Header Styles */
 .header {
-    background: linear-gradient(135deg, var(--dark-cyan) 0%, #5a9fa0 50%, var(--thistle) 100%);
+    background: var(--primary-color);
     color: white;
     padding: 2.5rem 0;
     box-shadow: 0 8px 32px rgba(63, 136, 141, 0.2);
@@ -144,7 +144,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    background: linear-gradient(135deg, var(--dark-cyan) 0%, #5a9fa0 50%, var(--thistle) 100%);
+    background: var(--primary-color);
     border-radius: 10px;
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
     min-width: 220px;

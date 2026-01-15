@@ -211,6 +211,16 @@
     text-align: center;
 }
 
+.meta-badge {
+    margin-left: 0.5rem;
+    background: rgba(0, 0, 0, 0.04);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    color: var(--dark-text);
+}
+
 .btn-edit {
     background-color: #fff3cd;
     color: #856404;

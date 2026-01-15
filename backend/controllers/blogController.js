@@ -191,3 +191,68 @@ exports.deleteBlog = async (req, res, next) => {
         next(error);
     }
 };
+// Like a blog post (toggle)
+exports.likeBlog = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const userId = req.user.id;
+
+        const blog = await Blog.findById(id);
+
+        if (!blog) {
+            return res.status(404).json({
+                success: false,
+                error: 'Blog post not found',
+            });
+        }
+
+        // Check if user already liked this blog
+        const alreadyLiked = blog.likes.includes(userId);
+
+        if (alreadyLiked) {
+            // Remove like
+            blog.likes = blog.likes.filter(id => id.toString() !== userId);
+        } else {
+            // Add like
+            blog.likes.push(userId);
+        }
+
+        await blog.save();
+
+        res.status(200).json({
+            success: true,
+            message: alreadyLiked ? 'Like removed' : 'Blog liked',
+            data: blog,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
+
+// Share a blog post (increments share count)
+exports.shareBlog = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+
+        const blog = await Blog.findByIdAndUpdate(
+            id,
+            { $inc: { shares: 1 } },
+            { new: true }
+        );
+
+        if (!blog) {
+            return res.status(404).json({
+                success: false,
+                error: 'Blog post not found',
+            });
+        }
+
+        res.status(200).json({
+            success: true,
+            message: 'Blog shared successfully',
+            data: blog,
+        });
+    } catch (error) {
+        next(error);
+    }
+};
